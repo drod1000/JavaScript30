@@ -58,15 +58,35 @@
   <script>
     window.addEventListener('keydown', function(e) {
       var keyCode = e.keyCode;
+
       playSound(keyCode);
+      addPlayingTransition(keyCode);
     })
+
+    const keys = document.querySelectorAll('.key');
+    keys.forEach(key => key.addEventListener('transitionend', removePlayingTransition));
 
     function playSound(keycode) {
       const sound = document.querySelector(`audio[data-key="${keycode}"]`);
-      if(sound) {
-        sound.play();
-      }
+
+      if(!sound) return;
+      //Resets time so we can play same sound repeatedly
+      sound.currentTime = 0;
+      sound.play();
     }
+
+    function addPlayingTransition(keycode) {
+      const key = document.querySelector(`.key[data-key="${keycode}"]`)
+      if(!key) return;
+      key.classList.add('playing');
+    }
+
+    function removePlayingTransition(e) {
+      if(e.propertyName !== 'transform') return;
+      //this is the element that the event listener was attached to and e is the event that happened
+      this.classList.remove('playing');
+    }
+
   </script>
 </body>
 </html>
