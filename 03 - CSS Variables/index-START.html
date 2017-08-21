@@ -61,6 +61,16 @@
   </style>
 
   <script>
+    const inputs = document.querySelectorAll('.controls input');
+
+    inputs.forEach(function(input) {
+      input.addEventListener('change', handleUpdate);
+      input.addEventListener('mousemove', handleUpdate);
+    })
+
+    function handleUpdate() {
+      console.log(this.value);
+    }
   </script>
 
 </body>
