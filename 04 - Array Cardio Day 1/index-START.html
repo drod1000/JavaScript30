@@ -58,7 +58,7 @@
     }, 0)
 
     // 5. Sort the inventors by years lived
-    const inventorsByYearsLived = inventor.sort(compareByYearsLived);
+    const inventorsByYearsLived = inventors.sort(compareByYearsLived);
 
     function compareByYearsLived(a, b) {
       if((a.passed - a.year) > (b.passed - b.year)) {
@@ -76,6 +76,18 @@
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
+    const peopleSortedByLastName = people.sort(compareByLastName);
+
+    function compareByLastName(a, b) {
+      const aLastName = a.split(',')[0];
+      const bLastName = b.split(',')[0];
+      if(aLastName < bLastName) {
+        return -1;
+      }
+      else {
+        return 1;
+      }
+    }
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
