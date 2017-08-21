@@ -69,7 +69,10 @@
     })
 
     function handleUpdate() {
-      console.log(this.value);
+      // || handles the posibility of an input not having a suffix
+      const suffix = this.dataset.sizing || '';
+
+      document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
     }
   </script>
 
