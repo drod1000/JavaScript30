@@ -18,9 +18,11 @@
 const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
 const cities = [];
 const searchInput = document.querySelector('.search');
+const suggestions = document.querySelector('.suggestions');
 
 searchInput.addEventListener('keyup', function() {
   const matches = findMatches(this.value, cities);
+  displaySuggestions(matches);
 })
 
 //Built into ES6, https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
@@ -31,6 +33,20 @@ fetch(endpoint)
 function findMatches(word, cities) {
   const regex = new RegExp(word, 'gi');
   return cities.filter(city => city.city.match(regex) || city.state.match(regex));
+}
+
+function displaySuggestions(matches) {
+  const html = matches.map(city => {
+    return `
+      <li>
+        <span class="name">${city.city}, ${city.state}</span>
+        <span class="population">${city.population}</span>
+      </li>
+    `;
+  //We want a single string of html
+  }).join('');
+  
+  suggestions.innerHTML = html;
 }
 
 </script>
