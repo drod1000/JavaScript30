@@ -17,6 +17,11 @@
 <script>
 const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
 const cities = [];
+const searchInput = document.querySelector('.search');
+
+searchInput.addEventListener('keyup', function() {
+  const matches = findMatches(this.value, cities);
+})
 
 //Built into ES6, https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
 fetch(endpoint)
@@ -29,5 +34,6 @@ function findMatches(word, cities) {
 }
 
 </script>
-  </body>
+
+</body>
 </html>
