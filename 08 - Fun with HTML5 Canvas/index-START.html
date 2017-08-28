@@ -20,6 +20,7 @@
   let lastX = 0;
   let lastY = 0;
   let hue = 0;
+  let direction = true;
 
   canvas.addEventListener('mousedown', (e) => {
   isDrawing = true;
@@ -44,6 +45,12 @@
   if (hue >= 360) {
     hue = 0;
   }
+
+  if (ctx.lineWidth >= 50 || ctx.lineWidth <= 1) {
+    direction = !direction;
+  }
+  
+  direction ? ctx.lineWidth++ : ctx.lineWidth-- ;
   }
 </script>
 
