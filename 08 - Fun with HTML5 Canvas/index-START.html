@@ -15,6 +15,13 @@
   ctx.lineJoin = 'round';
   ctx.lineCap = 'round';
   ctx.lineWidth = 100;
+
+  canvas.addEventListener('mousedown', (e) => {
+  isDrawing = true;
+  })
+  canvas.addEventListener('mousemove', draw);
+  canvas.addEventListener('mouseup', () => isDrawing = false);
+  canvas.addEventListener('mouseout', () => isDrawing = false);
 </script>
 
 <style>
