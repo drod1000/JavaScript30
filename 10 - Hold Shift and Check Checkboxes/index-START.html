@@ -100,12 +100,14 @@
 
 <script>
   const checkboxes = document.querySelectorAll(".item input[type='checkbox']");
+  const checkboxTexts = Array.from(document.querySelectorAll('.item p')).map(p => p.innerText);
   let shiftPressed = false
   let shiftCheckbox;
 
   checkboxes.forEach(checkbox => {
     checkbox.addEventListener('click', function() {
       if(this.checked && event.shiftKey && shiftCheckbox) {
+        checkAllInBetween(shiftCheckbox, this);
       }
       else if(this.checked && event.shiftKey) {
         shiftPressed = true;
@@ -117,6 +119,15 @@
       }
     })
   })
+
+  function checkAllInBetween(checkboxOne, checkboxTwo) {
+    const checkboxOneIndex = checkboxTexts.indexOf(checkboxOne.nextElementSibling.innerText);
+    const checkboxTwoIndex = checkboxTexts.indexOf(checkboxTwo.nextElementSibling.innerText);
+
+    for(let i = Math.min(checkboxOneIndex, checkboxTwoIndex) + 1; i < Math.max(checkboxOneIndex, checkboxTwoIndex); i++) {
+      checkboxes[i].checked = true;
+    }
+  }
 </script>
 </body>
 </html>
