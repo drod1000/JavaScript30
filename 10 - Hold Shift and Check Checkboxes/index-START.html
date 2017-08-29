@@ -105,9 +105,15 @@
 
   checkboxes.forEach(checkbox => {
     checkbox.addEventListener('click', function() {
-      if(this.checked && event.shiftKey) {
+      if(this.checked && event.shiftKey && shiftCheckbox) {
+      }
+      else if(this.checked && event.shiftKey) {
         shiftPressed = true;
         shiftCheckbox = this;
+      }
+      else {
+        shiftPressed = false;
+        shiftCheckbox = false;
       }
     })
   })
