@@ -99,6 +99,18 @@
   </div>
 
 <script>
+  const checkboxes = document.querySelectorAll(".item input[type='checkbox']");
+  let shiftPressed = false
+  let shiftCheckbox;
+
+  checkboxes.forEach(checkbox => {
+    checkbox.addEventListener('click', function() {
+      if(this.checked && event.shiftKey) {
+        shiftPressed = true;
+        shiftCheckbox = this;
+      }
+    })
+  })
 </script>
 </body>
 </html>
