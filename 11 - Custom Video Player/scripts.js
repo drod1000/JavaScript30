@@ -13,6 +13,10 @@ toggle.addEventListener('click', togglePlay);
 skipButtons.forEach(function(skipButton) {
   skipButton.addEventListener('click', skip);
 })
+ranges.forEach(function(range) {
+  range.addEventListener('change', handleRangeUpdate);
+  range.addEventListener('mousemove', handleRangeUpdate);
+})
 
 function togglePlay() {
   video.paused ? video.play() : video.pause();
@@ -25,4 +29,8 @@ function updateButton() {
 function skip() {
   const skipAmount = parseFloat(this.dataset.skip);
   video.currentTime += skipAmount;
+}
+
+function handleRangeUpdate() {
+  video[this.name] = this.value;
 }
