@@ -28,7 +28,7 @@
 <script>
   const addItems = document.querySelector('.add-items');
   const platesList = document.querySelector('.plates');
-  const plates = [];
+  const plates = JSON.parse(localStorage.getItem('plates')) || [];
 
   addItems.addEventListener('submit', addItem);
 
@@ -54,8 +54,11 @@
 
     plates.push(plate);
     populateList(plates, platesList);
+    localStorage.setItem('plates', JSON.stringify(plates));
     this.reset();
   }
+
+  populateList(plates, platesList);
 
 </script>
 
