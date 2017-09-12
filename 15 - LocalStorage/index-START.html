@@ -30,6 +30,7 @@
   const platesList = document.querySelector('.plates');
   const plates = JSON.parse(localStorage.getItem('plates')) || [];
 
+  platesList.addEventListener('click', toggleDone);
   addItems.addEventListener('submit', addItem);
 
   function populateList(items = [], itemsList) {
@@ -56,6 +57,16 @@
     populateList(plates, platesList);
     localStorage.setItem('plates', JSON.stringify(plates));
     this.reset();
+  }
+
+  function toggleDone(e) {
+    if(!e.target.matches('input')) return; //Skip this unless it's an input
+    {
+      const index = e.target.dataset.index
+
+      plates[index].done = !plates[index].done;
+      localStorage.setItem('plates', JSON.stringify(plates));
+    }
   }
 
   populateList(plates, platesList);
