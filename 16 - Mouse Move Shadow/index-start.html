@@ -35,6 +35,26 @@
   </style>
 
 <script>
+  const hero = document.querySelector('.hero');
+  const text = hero.querySelector('h1');
+
+  hero.addEventListener('mousemove', shadow);
+
+  function shadow(e) {
+    const width = hero.offsetWidth;
+    const height = hero.offsetHeight;
+    let x = e.offsetX;
+    let y = e.offsetY;
+    
+    //This is always the element that we added an event listener to
+    //e.target is the element that actually triggered the event
+    if(this !== e.target) {
+      x = x + e.target.offsetLeft;
+      y = y + e.target.offsetTop;
+    }
+
+    console.log(x, y);
+  }
 </script>
 </body>
 </html>
